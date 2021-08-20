@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: #f9f8f4;
+  color: #181818;
+}
+
+div#banner {
+  height: 200px;
+}
+
+div#shows-container {
+  background-color: white;
+  padding: 5em;
+}
+
+div#navbar {
+  text-align: left;
+}
+
+div#footer h5, span {
+  margin: 2em;
+  display: inline-block;
+}
