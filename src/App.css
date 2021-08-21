@@ -40,6 +40,11 @@
 body {
   background-color: #f9f8f4;
   color: #181818;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+a {
+  color: #181818;
 }
 
 div#banner {
@@ -53,6 +58,22 @@ div#shows-container {
 
 div#navbar {
   text-align: left;
+}
+
+div#navbar li {
+  display: inline-block;
+}
+
+div#navbar li#logo a {
+  font-size: 2em;
+  font-weight: 300;
+  margin: 0 5em 0 5em;
+  text-decoration: none;
+}
+
+div#navbar li#logo span.bold {
+  margin: 0;
+  font-weight: bolder;
 }
 
 div#footer h5, span {
