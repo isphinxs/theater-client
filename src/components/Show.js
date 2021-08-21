@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Show = props => {
-    // debugger;
     return (
         <div>
             <h3>{props.show.title}</h3>
@@ -13,7 +12,7 @@ const Show = props => {
                 <li>Book by: {props.show.book}</li>
                 <li>Open Date: {props.show.open_date}</li>
                 <li>Type: Musical</li> {/*toggle musical/theater */}
-            </ul>
+            </ul> 
         </div>
     )
 }

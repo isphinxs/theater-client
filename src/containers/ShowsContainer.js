@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Show from '../components/Show';
+import ShowsList from '../components/ShowsList';
 
 function ShowsContainer() {
     const [shows, setShows] = useState([]);
@@ -12,12 +14,20 @@ function ShowsContainer() {
             });
     }, []);
 
-    // debugger;
     return(
-        <div id="shows-container">
-            <h1>Shows Container</h1>
-            {shows && shows.length > 0 ? shows.map(show => <Show show={show} />) : null}
-        </div>
+        <Router>
+            <div id="shows-container">
+                <Switch>
+                    <Route path="/shows/:id" component={(routeInfo) => {
+                        const routeId = parseInt(routeInfo.match.params.id);
+                        const show = shows.find(s => s.id === routeId);
+                        return show ? <Show show={show} /> : null;
+                    }} />
+                    <Route path="/shows" component={() => <ShowsList shows={shows} />} />
+                </Switch>
+                    
+            </div>
+        </Router>
     )
 }
 
