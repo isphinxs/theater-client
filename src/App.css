@@ -59,3 +59,7 @@ div#footer h5, span {
   margin: 2em;
   display: inline-block;
 }
+
+li {
+  list-style: none;
+}
