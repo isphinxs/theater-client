@@ -1,9 +1,16 @@
 const initialState = {
-    shows: []
+    shows: [],
+    savedShows: []
 }
 
 function showsReducer(state = initialState, action) {
     switch(action.type) {
+        case 'shows/saveShow': {
+            return {
+                ...state,
+                savedShows: [...state.savedShows, action.payload]
+            }
+        }
         case 'shows/loading': {
             return {
                 ...state,
