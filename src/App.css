@@ -62,6 +62,7 @@ div#navbar {
 
 div#navbar li {
   display: inline-block;
+  margin: 0 1em;
 }
 
 div#navbar li#logo a {

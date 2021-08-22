@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import Show from '../components/Show';
 import ShowsList from '../components/ShowsList';
+import SavedShows from '../components/SavedShows';
 
 const selectShows = state => state.shows;
 
@@ -18,6 +19,7 @@ function ShowsContainer() {
         <div id="shows-container">
             <Switch>
                 <Route exact path="/shows" component={() => <ShowsList shows={shows} />} />
+                <Route path="/shows/saved" component={() => <SavedShows />} />
                 <Route path="/shows/:id" component={(routeInfo) => {
                     const routeId = parseInt(routeInfo.match.params.id);
                     const show = shows.find(s => s.id === routeId);

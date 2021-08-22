@@ -6,6 +6,7 @@ function Navbar() {
         <div id="navbar">
             <ul>
                 <li id="logo"><NavLink to="/">good<span className="bold">theater</span></NavLink></li>
+                <li><NavLink to="/shows/saved" exact>My Shows</NavLink></li>
                 <li><NavLink to="/shows" exact>Browse Shows</NavLink></li>
             </ul>
         </div>
