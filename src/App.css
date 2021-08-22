@@ -53,11 +53,19 @@ div#banner {
 
 div#shows-container {
   background-color: white;
-  padding: 5em;
+  padding: 2em;
 }
 
 div#navbar {
   text-align: left;
+}
+
+div#navbar a {
+  text-decoration: none;
+}
+
+div#navbar ul {
+  margin: 0.5em;
 }
 
 div#navbar li {

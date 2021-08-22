@@ -1,14 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import SavedShowsList from './SavedShowsList';
 
 const selectSavedShows = state => state.savedShows;
 
 function SavedShows() {
     const savedShows = useSelector(selectSavedShows);
+    const dispatch = useDispatch();
 
-    const handleClick = () => {
-        console.log("Clicked")
+    const handleClick = show => {
+        dispatch({ type: "shows/removeShow", payload: show})
     };
 
     return(

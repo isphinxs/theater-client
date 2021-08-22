@@ -11,6 +11,16 @@ function showsReducer(state = initialState, action) {
                 savedShows: [...state.savedShows, action.payload]
             }
         }
+        case 'shows/removeShow': {
+            return {
+                ...state,
+                savedShows: state.savedShows.map(show => {
+                    if (show.id !== action.payload.id) {
+                        return show
+                    }
+                })
+            }
+        }
         case 'shows/loading': {
             return {
                 ...state,
