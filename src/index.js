@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './store';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import store from './store';
+import { fetchShows } from './reducers/showsReducer';
+
+store.dispatch(fetchShows);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import Show from '../components/Show';
 import ShowsList from '../components/ShowsList';
 
-function ShowsContainer() {
-    const [shows, setShows] = useState([]);
+const selectShows = state => state.shows;
 
-    useEffect(() => {
-        fetch("http://localhost:3000/shows")
-            .then(resp => resp.json())
-            .then(data => {
-                setShows(data);
-            });
-    }, []);
+function ShowsContainer() {
+    const shows = useSelector(selectShows);
 
     return(
         <div id="shows-container">
