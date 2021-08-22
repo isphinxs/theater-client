@@ -13,7 +13,7 @@ const Show = props => {
                 <li>Open Date: {props.show.open_date}</li>
                 <li>Type: Musical</li> {/*toggle musical/theater */}
             </ul> 
-            <button onClick={() => props.handleClick()}>Add to Saved</button>
+            <button onClick={() => props.handleClick(props.show)}>Add to Saved</button>
         </div>
     )
 }

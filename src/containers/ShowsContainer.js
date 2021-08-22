@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import Show from '../components/Show';
 import ShowsList from '../components/ShowsList';
@@ -8,9 +8,10 @@ const selectShows = state => state.shows;
 
 function ShowsContainer() {
     const shows = useSelector(selectShows);
-    
-    const handleClick = event => {
-        console.log("Clicked!");
+    const dispatch = useDispatch();
+
+    const handleClick = show => {
+        dispatch({ type: 'shows/saveShow', payload: show})
     }
 
     return(
