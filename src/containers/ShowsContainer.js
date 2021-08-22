@@ -8,6 +8,10 @@ const selectShows = state => state.shows;
 
 function ShowsContainer() {
     const shows = useSelector(selectShows);
+    
+    const handleClick = event => {
+        console.log("Clicked!");
+    }
 
     return(
         <div id="shows-container">
@@ -16,7 +20,7 @@ function ShowsContainer() {
                 <Route path="/shows/:id" component={(routeInfo) => {
                     const routeId = parseInt(routeInfo.match.params.id);
                     const show = shows.find(s => s.id === routeId);
-                    return show ? <Show show={show} /> : null;
+                    return show ? <Show show={show} handleClick={handleClick} /> : null;
                 }} />
             </Switch>
         </div>
