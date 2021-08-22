@@ -13,6 +13,7 @@ const Show = props => {
                 <li>Open Date: {props.show.open_date}</li>
                 <li>Type: Musical</li> {/*toggle musical/theater */}
             </ul> 
+            <button onClick={console.log("Clicked!")}>Add to Saved</button>
         </div>
     )
 }
