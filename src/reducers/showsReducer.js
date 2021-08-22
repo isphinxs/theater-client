@@ -27,6 +27,12 @@ function showsReducer(state = initialState, action) {
                 shows: [...state.shows]
             }
         }
+        case 'shows/saving': {
+            return {
+                ...state,
+                shows: [...state.shows]
+            }
+        }
         case 'shows/setShows': {
             return {
                 ...state,
@@ -49,5 +55,42 @@ export function fetchShows(dispatch) {
             })  
         );
 }
+
+export function saveShow(show) {
+    debugger;
+    return async function saveShowThunk(dispatch) {
+        // hard-code user
+        const user = {
+            user: { show_id: show.id }
+        }
+        const resp = await fetch('http://localhost:3000/users/1', {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'accepts': 'application/json'
+            },
+            body: JSON.stringify(user)
+        });
+        const data = await resp.json();
+        debugger;
+    }
+}
+
+// export function saveShow(dispatch) {
+//     dispatch({ type: 'shows/saving' });
+//     // hard-code user
+//     fetch('http://localhost:3000/users/1', {
+//         method: 'POST',
+//         headers: {
+//             'content-type': 'application/json',
+//             'accepts': 'application/json'
+//         },
+//         body: JSON.stringify({ show })
+//     })
+//         .then(resp => resp.json())
+//         .then(data => {
+//             debugger;
+//         })
+// }
 
 export default showsReducer;

@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Show from '../components/Show';
 import ShowsList from '../components/ShowsList';
 import SavedShows from '../components/SavedShows';
+import { saveShow } from '../reducers/showsReducer';
 
 const selectShows = state => state.shows;
 
@@ -12,6 +13,10 @@ function ShowsContainer() {
     const dispatch = useDispatch();
 
     const handleClick = show => {
+        const saveShowThunk = saveShow(show);
+        debugger;
+        dispatch(saveShowThunk);
+        // original:
         dispatch({ type: 'shows/saveShow', payload: show})
     }
 
