@@ -14,11 +14,7 @@ function showsReducer(state = initialState, action) {
         case 'shows/removeShow': {
             return {
                 ...state,
-                savedShows: state.savedShows.map(show => {
-                    if (show.id !== action.payload.id) {
-                        return show
-                    }
-                })
+                savedShows: state.savedShows.filter(show => show.id !== action.payload.id)
             }
         }
         case 'shows/loading': {
@@ -57,11 +53,10 @@ export function fetchShows(dispatch) {
 }
 
 export function saveShow(show) {
-    debugger;
     return async function saveShowThunk(dispatch) {
         // hard-code user
         const user = {
-            user: { show_id: show.id }
+            user: { show_ids: [show.id] }
         }
         const resp = await fetch('http://localhost:3000/users/1', {
             method: 'PATCH',
@@ -72,7 +67,7 @@ export function saveShow(show) {
             body: JSON.stringify(user)
         });
         const data = await resp.json();
-        debugger;
+        return data;
     }
 }
 
