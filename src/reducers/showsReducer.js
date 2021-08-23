@@ -4,6 +4,7 @@ const initialState = {
 }
 
 function showsReducer(state = initialState, action) {
+    // debugger;
     switch(action.type) {
         case 'shows/saveShow': {
             return {
@@ -43,7 +44,7 @@ function showsReducer(state = initialState, action) {
 
 export function fetchShows(dispatch) {
     dispatch({ type: 'shows/loading' });
-    fetch("http://localhost:3000/shows")
+    fetch('http://localhost:3000/shows')
         .then(resp => resp.json())
         .then(data => dispatch({
                 type: 'shows/setShows',
@@ -54,6 +55,9 @@ export function fetchShows(dispatch) {
 
 export function saveShow(show) {
     return async function saveShowThunk(dispatch) {
+        // update Redux state
+        dispatch({type: 'shows/saveShow', payload: show})
+        // update database
         // hard-code user
         const user = {
             user: { show_ids: [show.id] }
@@ -70,22 +74,5 @@ export function saveShow(show) {
         return data;
     }
 }
-
-// export function saveShow(dispatch) {
-//     dispatch({ type: 'shows/saving' });
-//     // hard-code user
-//     fetch('http://localhost:3000/users/1', {
-//         method: 'POST',
-//         headers: {
-//             'content-type': 'application/json',
-//             'accepts': 'application/json'
-//         },
-//         body: JSON.stringify({ show })
-//     })
-//         .then(resp => resp.json())
-//         .then(data => {
-//             debugger;
-//         })
-// }
 
 export default showsReducer;
