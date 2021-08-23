@@ -36,6 +36,12 @@ function showsReducer(state = initialState, action) {
                 shows: action.payload
             }
         }
+        case 'shows/setSavedShows': {
+            return {
+                ...state,
+                savedShows: action.payload
+            }
+        }
         default: {
             return state;
         }
@@ -51,6 +57,19 @@ export function fetchShows(dispatch) {
                 payload: data
             })  
         );
+}
+
+export function checkForSavedShows(dispatch) {
+    dispatch({ type: 'shows/loading'});
+    // hard-code user
+    fetch('http://localhost:3000/users/1')
+        .then(resp => resp.json())
+        .then(data => {
+            dispatch({
+                type: 'shows/setSavedShows',
+                payload: data.shows
+            })
+        });
 }
 
 export function saveShow(show) {

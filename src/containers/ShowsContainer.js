@@ -15,8 +15,6 @@ function ShowsContainer() {
     const handleClick = show => {
         const saveShowThunk = saveShow(show);
         dispatch(saveShowThunk);
-        // original:
-        // dispatch({ type: 'shows/saveShow', payload: show})
     }
 
     return(
