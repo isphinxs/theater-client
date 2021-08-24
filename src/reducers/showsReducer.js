@@ -72,14 +72,43 @@ export function checkForSavedShows(dispatch) {
         });
 }
 
-export function saveShow(show) {
+export function saveShow(show, savedShows) {
     return async function saveShowThunk(dispatch) {
         // update Redux state
-        dispatch({type: 'shows/saveShow', payload: show})
+        dispatch({type: 'shows/saveShow', payload: show});
+
         // update database
+        const show_ids = savedShows.map(show => show.id);
+        if (!show_ids.includes(show.id)) {
+            show_ids.push(show.id);
+        }
         // hard-code user
         const user = {
-            user: { show_ids: [show.id] }
+            user: { show_ids }
+        }
+        const resp = await fetch('http://localhost:3000/users/1', {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'accepts': 'application/json'
+            },
+            body: JSON.stringify(user)
+        });
+        const data = await resp.json();
+        return data;
+    }
+}
+
+export function removeShow(show, savedShows) {
+    return async function removeShowThunk(dispatch) {
+        // update Redux state
+        dispatch({ type: 'shows/removeShow', payload: show});
+
+        // update database
+        const show_ids = savedShows.map(show => show.id).filter(show_id => show_id !== show.id);
+        // hard-code user
+        const user = {
+            user: { show_ids }
         }
         const resp = await fetch('http://localhost:3000/users/1', {
             method: 'PATCH',
