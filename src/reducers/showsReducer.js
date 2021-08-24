@@ -74,14 +74,17 @@ export function checkForSavedShows(dispatch) {
 
 export function saveShow(show, savedShows) {
     return async function saveShowThunk(dispatch) {
+        // check if show is already saved
+        const show_ids = savedShows.map(show => show.id);
+        if (show_ids.includes(show.id)) {
+            return;
+        }
+        show_ids.push(show.id);
+        
         // update Redux state
         dispatch({type: 'shows/saveShow', payload: show});
 
         // update database
-        const show_ids = savedShows.map(show => show.id);
-        if (!show_ids.includes(show.id)) {
-            show_ids.push(show.id);
-        }
         // hard-code user
         const user = {
             user: { show_ids }
