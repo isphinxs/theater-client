@@ -1,7 +1,8 @@
 const initialState = {
     shows: [],
     savedShows: [],
-    isLoading: false
+    isLoading: false,
+    error: null
 }
 
 function showsReducer(state = initialState, action) {
@@ -11,21 +12,24 @@ function showsReducer(state = initialState, action) {
             return {
                 ...state,
                 savedShows: [...state.savedShows, action.payload],
-                isLoading: false
+                isLoading: false,
+                error: null
             }
         }
         case 'shows/removeShow': {
             return {
                 ...state,
                 savedShows: state.savedShows.filter(show => show.id !== action.payload.id),
-                isLoading: false
+                isLoading: false,
+                error: null
             }
         }
         case 'shows/loading': {
             return {
                 ...state,
                 shows: [...state.shows],
-                isLoading: true
+                isLoading: true,
+                error: null
             }
         }
         case 'shows/saving': {
@@ -38,14 +42,22 @@ function showsReducer(state = initialState, action) {
             return {
                 ...state,
                 shows: action.payload,
-                isLoading: false
+                isLoading: false,
+                error: null
             }
         }
         case 'shows/setSavedShows': {
             return {
                 ...state,
                 savedShows: action.payload,
-                isLoading: false
+                isLoading: false,
+                error: null
+            }
+        }
+        case 'shows/error': {
+            return {
+                ...state,
+                error: action.payload
             }
         }
         default: {
@@ -62,25 +74,31 @@ export function fetchShows(dispatch) {
                 type: 'shows/setShows',
                 payload: data
             })  
-        );
-}
-
-export function checkForSavedShows(dispatch) {
-    dispatch({ type: 'shows/loading'});
-    // hard-code user
-    fetch('http://localhost:3000/users/1')
+        )
+        .catch(error => {
+            dispatch({ type: 'shows/error', payload: error })
+        });
+    }
+    
+    export function checkForSavedShows(dispatch) {
+        dispatch({ type: 'shows/loading'});
+        // hard-code user
+        fetch('http://localhost:3000/users/1')
         .then(resp => resp.json())
         .then(data => {
             dispatch({
                 type: 'shows/setSavedShows',
                 payload: data.shows
             })
+        })
+        .catch(error => {
+            dispatch({ type: 'shows/error', payload: error })
         });
-}
+    }
 
 export function saveShow(show) {
     return async function saveShowThunk(dispatch, getState) {
-        dispatch({ type: 'shows/loading', payload: getState()});
+        dispatch({ type: 'shows/loading' });
         
         // check if show is already saved
         const savedShows = getState().savedShows;
@@ -90,26 +108,29 @@ export function saveShow(show) {
         }
         show_ids.push(show.id);
         
-        // update database
         // hard-code user
         const user = {
             user: { show_ids }
         }
-        const resp = await fetch('http://localhost:3000/users/1', {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json',
-                'accepts': 'application/json'
-            },
-            body: JSON.stringify(user)
-        });
-        const data = await resp.json();
-        // handle errors
-        
-        // update Redux state
-        dispatch({type: 'shows/saveShow', payload: show});
-        
-        return data;
+
+        try {
+            const resp = await fetch('http://localhost:3000/users/1', {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'accepts': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+            const data = await resp.json();
+            
+            // update Redux state
+            dispatch({type: 'shows/saveShow', payload: show});
+            
+            return data;
+        } catch(error) {
+            dispatch({ type: 'shows/error' });
+        }
     }
 }
 
@@ -124,20 +145,25 @@ export function removeShow(show) {
         const user = {
             user: { show_ids }
         }
-        const resp = await fetch('http://localhost:3000/users/1', {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json',
-                'accepts': 'application/json'
-            },
-            body: JSON.stringify(user)
-        });
-        const data = await resp.json();
         
-        // update Redux state
-        dispatch({ type: 'shows/removeShow', payload: show});
-        
-        return data;
+        try {
+            const resp = await fetch('http://localhost:3000/users/1', {
+                method: 'PATCH',
+                headers: {
+                    'content-type': 'application/json',
+                    'accepts': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+            const data = await resp.json();
+            
+            // update Redux state
+            dispatch({ type: 'shows/removeShow', payload: show});
+            
+            return data;
+        } catch(error) {
+            dispatch({ type: 'shows/error' });
+        }
     }
 }
 
