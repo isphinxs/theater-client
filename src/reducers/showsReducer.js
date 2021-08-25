@@ -106,12 +106,11 @@ export function saveShow(show) {
     }
 }
 
-export function removeShow(show, savedShows) {
-    return async function removeShowThunk(dispatch) {
-        // update Redux state
-        dispatch({ type: 'shows/removeShow', payload: show});
+export function removeShow(show) {
+    return async function removeShowThunk(dispatch, getState) {
 
         // update database
+        const savedShows = getState().savedShows;
         const show_ids = savedShows.map(show => show.id).filter(show_id => show_id !== show.id);
         // hard-code user
         const user = {
@@ -126,6 +125,10 @@ export function removeShow(show, savedShows) {
             body: JSON.stringify(user)
         });
         const data = await resp.json();
+        
+        // update Redux state
+        dispatch({ type: 'shows/removeShow', payload: show});
+        
         return data;
     }
 }

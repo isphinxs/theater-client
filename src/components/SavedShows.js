@@ -11,7 +11,7 @@ function SavedShows() {
 
     const handleClick = show => {
         // dispatch({ type: "shows/removeShow", payload: show})
-        const removeShowThunk = removeShow(show, savedShows);
+        const removeShowThunk = removeShow(show);
         dispatch(removeShowThunk);
     };
 
