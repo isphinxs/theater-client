@@ -93,3 +93,40 @@ div#footer h5, span {
 li {
   list-style: none;
 }
+
+/* Login */
+
+div#login {
+  width: 250px;
+  margin: 14px 6px 0 0;
+  font-family: "Merriweather", "Georgia", serif;
+  float: right;
+  position: sticky;
+  padding: 24px;
+  background: #FFFFFF;
+  border: 1px solid #D8D8D8;
+  border-radius: 10px;
+  text-align: center;
+}
+
+button#auth {
+  background: #382110;
+  color: white;
+  border-radius: 3px;
+  padding: 8px 12px;
+  min-width: 200px;
+  margin: 0.5em;
+}
+
+button#auth:hover {
+  background: #745037;
+}
+
+button#google {
+  background: white;
+  color: #382110;
+  border-radius: 3px;
+  padding: 8px 12px;
+  min-width: 200px;
+  margin: 0.5em;
+}
