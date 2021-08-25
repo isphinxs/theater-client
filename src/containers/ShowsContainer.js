@@ -7,15 +7,15 @@ import SavedShows from '../components/SavedShows';
 import { saveShow } from '../reducers/showsReducer';
 
 const selectShows = state => state.shows;
-const selectSavedShows = state => state.savedShows;
+// const selectSavedShows = state => state.savedShows;
 
 function ShowsContainer() {
     const shows = useSelector(selectShows);
-    const savedShows = useSelector(selectSavedShows);
+    // const savedShows = useSelector(selectSavedShows);
     const dispatch = useDispatch();
 
     const handleClick = show => {
-        const saveShowThunk = saveShow(show, savedShows);
+        const saveShowThunk = saveShow(show);
         dispatch(saveShowThunk);
     }
 

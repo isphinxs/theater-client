@@ -72,18 +72,17 @@ export function checkForSavedShows(dispatch) {
         });
 }
 
-export function saveShow(show, savedShows) {
-    return async function saveShowThunk(dispatch) {
+export function saveShow(show) {
+    return async function saveShowThunk(dispatch, getState) {
+        
         // check if show is already saved
+        const savedShows = getState().savedShows;
         const show_ids = savedShows.map(show => show.id);
         if (show_ids.includes(show.id)) {
             return;
         }
         show_ids.push(show.id);
         
-        // update Redux state
-        dispatch({type: 'shows/saveShow', payload: show});
-
         // update database
         // hard-code user
         const user = {
@@ -98,6 +97,11 @@ export function saveShow(show, savedShows) {
             body: JSON.stringify(user)
         });
         const data = await resp.json();
+        // handle errors
+
+        // update Redux state
+        dispatch({type: 'shows/saveShow', payload: show});
+
         return data;
     }
 }
