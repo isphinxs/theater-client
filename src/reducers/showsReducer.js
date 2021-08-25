@@ -1,6 +1,7 @@
 const initialState = {
     shows: [],
-    savedShows: []
+    savedShows: [],
+    isLoading: false
 }
 
 function showsReducer(state = initialState, action) {
@@ -9,19 +10,22 @@ function showsReducer(state = initialState, action) {
         case 'shows/saveShow': {
             return {
                 ...state,
-                savedShows: [...state.savedShows, action.payload]
+                savedShows: [...state.savedShows, action.payload],
+                isLoading: false
             }
         }
         case 'shows/removeShow': {
             return {
                 ...state,
-                savedShows: state.savedShows.filter(show => show.id !== action.payload.id)
+                savedShows: state.savedShows.filter(show => show.id !== action.payload.id),
+                isLoading: false
             }
         }
         case 'shows/loading': {
             return {
                 ...state,
-                shows: [...state.shows]
+                shows: [...state.shows],
+                isLoading: true
             }
         }
         case 'shows/saving': {
@@ -33,13 +37,15 @@ function showsReducer(state = initialState, action) {
         case 'shows/setShows': {
             return {
                 ...state,
-                shows: action.payload
+                shows: action.payload,
+                isLoading: false
             }
         }
         case 'shows/setSavedShows': {
             return {
                 ...state,
-                savedShows: action.payload
+                savedShows: action.payload,
+                isLoading: false
             }
         }
         default: {
@@ -74,6 +80,7 @@ export function checkForSavedShows(dispatch) {
 
 export function saveShow(show) {
     return async function saveShowThunk(dispatch, getState) {
+        dispatch({ type: 'shows/loading', payload: getState()});
         
         // check if show is already saved
         const savedShows = getState().savedShows;
@@ -98,17 +105,18 @@ export function saveShow(show) {
         });
         const data = await resp.json();
         // handle errors
-
+        
         // update Redux state
         dispatch({type: 'shows/saveShow', payload: show});
-
+        
         return data;
     }
 }
 
 export function removeShow(show) {
     return async function removeShowThunk(dispatch, getState) {
-
+        dispatch({ type: 'shows/loading', payload: getState()});
+        
         // update database
         const savedShows = getState().savedShows;
         const show_ids = savedShows.map(show => show.id).filter(show_id => show_id !== show.id);
