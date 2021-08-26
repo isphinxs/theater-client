@@ -130,3 +130,27 @@ button#google {
   min-width: 200px;
   margin: 0.5em;
 }
+
+div#login-form {
+  background: white;
+  text-align: center;
+  border-radius: 4px;
+  margin: 3em;
+  padding: 2em;
+}
+
+div#login-form h3 {
+  font-family: "Merriweather", Georgia, "Times New Roman", serif;
+}
+
+div#login-form input {
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+div#login-form button {
+  background: #F4F1EA;
+  border-radius: 3px;
+  display: inline-block;
+  min-width: 200px;
+}
