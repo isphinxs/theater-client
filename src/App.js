@@ -4,6 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Banner from './components/Banner';
 import Login from './components/Login';
+import LoginForm from './components/LoginForm';
 import ShowsContainer from './containers/ShowsContainer';
 import Footer from './components/Footer';
 
@@ -13,10 +14,12 @@ function App() {
       <div className="App">
         <Navbar />
         <Banner />
-        {/* <Login /> */}
         <Switch>
           <Route path="/shows">
             <ShowsContainer />
+          </Route>
+          <Route path="/login">
+            <LoginForm />
           </Route>
           <Route path="/">
             <h3>Home</h3>
