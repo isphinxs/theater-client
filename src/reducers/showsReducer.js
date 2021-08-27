@@ -2,7 +2,8 @@ const initialState = {
     shows: [],
     savedShows: [],
     isLoading: false,
-    error: null
+    error: null,
+    token: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.0NAXbbVzeMaKZAl8HdOq3JcgIDf5xpGF2rkg5frw6FE"
 }
 
 function showsReducer(state = initialState, action) {
@@ -83,7 +84,11 @@ export function fetchShows(dispatch) {
     export function checkForSavedShows(dispatch) {
         dispatch({ type: 'shows/loading'});
         // hard-code user
-        fetch('http://localhost:3000/users/1')
+        fetch('http://localhost:3000/users/1', {
+            headers: {
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.0NAXbbVzeMaKZAl8HdOq3JcgIDf5xpGF2rkg5frw6FE`
+            }
+        })
         .then(resp => resp.json())
         .then(data => {
             dispatch({
@@ -118,7 +123,8 @@ export function saveShow(show) {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
-                    'accepts': 'application/json'
+                    'accepts': 'application/json',
+                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.0NAXbbVzeMaKZAl8HdOq3JcgIDf5xpGF2rkg5frw6FE`
                 },
                 body: JSON.stringify(user)
             });

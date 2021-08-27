@@ -15,6 +15,21 @@ function LoginForm() {
     const handleSubmit = event => {
         event.preventDefault();
         debugger;
+        fetch("http://localhost:3000/login", {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'accepts': 'application/json',
+            },
+            body: JSON.stringify({ user: { email: email, password: password } })
+        })
+            .then(resp => resp.json())
+            .then(data => {
+                debugger;
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     
