@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [jwt, setJwt] = useState("");
  
     const handleEmailChange = event => {
         setEmail(event.target.value);
@@ -14,8 +15,8 @@ function LoginForm() {
 
     const handleSubmit = event => {
         event.preventDefault();
-        debugger;
-        fetch("http://localhost:3000/login", {
+        // debugger;
+        fetch("http://localhost:3000/api/v1/auth", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -25,7 +26,9 @@ function LoginForm() {
         })
             .then(resp => resp.json())
             .then(data => {
-                debugger;
+                setJwt(data);
+                // debugger;
+                console.log(jwt);
             })
             .catch(error => {
                 console.log(error);
@@ -37,7 +40,7 @@ function LoginForm() {
         <div id="login-form">
             <h3>Sign in to Goodtheater</h3>
             <form onSubmit={handleSubmit}>
-                <label for="email">Email address</label>
+                <label htmlFor="email">Email address</label>
                 <input 
                     type="text" 
                     id="email" 
@@ -45,7 +48,7 @@ function LoginForm() {
                     value={email}
                 />
                 <br />
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input 
                     type="password" 
                     id="password"
