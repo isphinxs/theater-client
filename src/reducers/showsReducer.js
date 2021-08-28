@@ -7,7 +7,6 @@ const initialState = {
 }
 
 function showsReducer(state = initialState, action) {
-    // debugger;
     switch(action.type) {
         case 'shows/saveShow': {
             return {
@@ -103,11 +102,9 @@ export function fetchShows(dispatch) {
         });
 }
 
-export function checkForSavedShows(dispatch) {
+export function checkForSavedShows(dispatch, getState) {
     dispatch({ type: 'shows/loading' });
-    debugger;
-    // hard-code user
-    fetch('http://localhost:3000/users/1', {
+    fetch(`http://localhost:3000/users/${getState().user.id}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
         }
@@ -136,13 +133,12 @@ export function saveShow(show) {
         }
         show_ids.push(show.id);
         
-        // hard-code user
         const user = {
             user: { show_ids }
         }
 
         try {
-            const resp = await fetch('http://localhost:3000/users/1', {
+            const resp = await fetch(`http://localhost:3000/users/${getState().user.id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
@@ -170,13 +166,13 @@ export function removeShow(show) {
         // update database
         const savedShows = getState().savedShows;
         const show_ids = savedShows.map(show => show.id).filter(show_id => show_id !== show.id);
-        // hard-code user
+
         const user = {
             user: { show_ids }
         }
         
         try {
-            const resp = await fetch('http://localhost:3000/users/1', {
+            const resp = await fetch(`http://localhost:3000/users/${getState().user.id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
