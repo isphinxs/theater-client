@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { saveToken } from '../reducers/showsReducer';
 
 function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [jwt, setJwt] = useState("");
+    
+    const dispatch = useDispatch();
  
     const handleEmailChange = event => {
         setEmail(event.target.value);
@@ -15,24 +18,8 @@ function LoginForm() {
 
     const handleSubmit = event => {
         event.preventDefault();
-        // debugger;
-        fetch("http://localhost:3000/api/v1/auth", {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                'accepts': 'application/json',
-            },
-            body: JSON.stringify({ user: { email: email, password: password } })
-        })
-            .then(resp => resp.json())
-            .then(data => {
-                setJwt(data);
-                // debugger;
-                console.log(jwt);
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        const saveTokenThunk = saveToken(email, password);
+        dispatch(saveTokenThunk);
     }
 
     

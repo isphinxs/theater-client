@@ -3,7 +3,7 @@ const initialState = {
     savedShows: [],
     isLoading: false,
     error: null,
-    token: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.0NAXbbVzeMaKZAl8HdOq3JcgIDf5xpGF2rkg5frw6FE"
+    token: ""
 }
 
 function showsReducer(state = initialState, action) {
@@ -58,6 +58,28 @@ function showsReducer(state = initialState, action) {
         case 'shows/error': {
             return {
                 ...state,
+                error: action.payload
+            }
+        }
+        case 'token/authenticating': {
+            return {
+                ...state,
+                isLoading: true,
+                error: null
+            }
+        }
+        case 'token/saveToken': {
+            return {
+                ...state,
+                isLoading: false,
+                error: null,
+                token: action.payload
+            }
+        }
+        case 'token/error': {
+            return {
+                ...state,
+                isLoading: false,
                 error: action.payload
             }
         }
@@ -169,6 +191,28 @@ export function removeShow(show) {
             return data;
         } catch(error) {
             dispatch({ type: 'shows/error' });
+        }
+    }
+}
+    
+export function saveToken(email, password) {
+    return async function saveTokenThunk(dispatch) {
+        dispatch({ type: 'token/authenticating' });
+        try {
+            fetch('http://localhost:3000/api/v1/auth', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'accepts': 'application/json'
+                },
+                body: JSON.stringify({ user: { email: email, password: password } })
+            })
+                .then(resp => resp.json())
+                .then(data => {
+                    dispatch({ type: 'token/saveToken', payload: data.jwt});
+                })
+        } catch(error) {
+            dispatch({ type: 'token/error', payload: error });
         }
     }
 }
