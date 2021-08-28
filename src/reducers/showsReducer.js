@@ -3,7 +3,7 @@ const initialState = {
     savedShows: [],
     isLoading: false,
     error: null,
-    token: ""
+    user: {}
 }
 
 function showsReducer(state = initialState, action) {
@@ -61,22 +61,22 @@ function showsReducer(state = initialState, action) {
                 error: action.payload
             }
         }
-        case 'token/authenticating': {
+        case 'user/authenticating': {
             return {
                 ...state,
                 isLoading: true,
                 error: null
             }
         }
-        case 'token/saveToken': {
+        case 'user/saveUser': {
             return {
                 ...state,
                 isLoading: false,
                 error: null,
-                token: action.payload
+                user: action.payload
             }
         }
-        case 'token/error': {
+        case 'user/error': {
             return {
                 ...state,
                 isLoading: false,
@@ -195,9 +195,9 @@ export function removeShow(show) {
     }
 }
     
-export function saveToken(email, password) {
-    return async function saveTokenThunk(dispatch) {
-        dispatch({ type: 'token/authenticating' });
+export function saveUser(email, password) {
+    return async function saveUserThunk(dispatch) {
+        dispatch({ type: 'user/authenticating' });
         try {
             fetch('http://localhost:3000/api/v1/auth', {
                 method: 'POST',
@@ -209,10 +209,11 @@ export function saveToken(email, password) {
             })
                 .then(resp => resp.json())
                 .then(data => {
-                    dispatch({ type: 'token/saveToken', payload: data.jwt});
+                    localStorage.setItem("token", data.jwt);
+                    dispatch({ type: 'user/saveUser', payload: data.user});
                 })
         } catch(error) {
-            dispatch({ type: 'token/error', payload: error });
+            dispatch({ type: 'user/error', payload: error });
         }
     }
 }

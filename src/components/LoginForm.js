@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { saveToken } from '../reducers/showsReducer';
+import { saveUser } from '../reducers/showsReducer';
 
 function LoginForm() {
     const [email, setEmail] = useState("");
@@ -18,8 +18,8 @@ function LoginForm() {
 
     const handleSubmit = event => {
         event.preventDefault();
-        const saveTokenThunk = saveToken(email, password);
-        dispatch(saveTokenThunk);
+        const saveUserThunk = saveUser(email, password);
+        dispatch(saveUserThunk);
     }
 
     
