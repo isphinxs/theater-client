@@ -108,7 +108,7 @@ export function fetchShows(dispatch) {
         // hard-code user
         fetch('http://localhost:3000/users/1', {
             headers: {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.0NAXbbVzeMaKZAl8HdOq3JcgIDf5xpGF2rkg5frw6FE`
+                Authorization: `Bearer ${localStorage.getItem("token")}`
             }
         })
         .then(resp => resp.json())
@@ -146,7 +146,7 @@ export function saveShow(show) {
                 headers: {
                     'content-type': 'application/json',
                     'accepts': 'application/json',
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyfQ.0NAXbbVzeMaKZAl8HdOq3JcgIDf5xpGF2rkg5frw6FE`
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 },
                 body: JSON.stringify(user)
             });
