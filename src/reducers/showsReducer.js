@@ -101,27 +101,28 @@ export function fetchShows(dispatch) {
         .catch(error => {
             dispatch({ type: 'shows/error', payload: error })
         });
-    }
-    
-    export function checkForSavedShows(dispatch) {
-        dispatch({ type: 'shows/loading'});
-        // hard-code user
-        fetch('http://localhost:3000/users/1', {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`
-            }
+}
+
+export function checkForSavedShows(dispatch) {
+    dispatch({ type: 'shows/loading' });
+    debugger;
+    // hard-code user
+    fetch('http://localhost:3000/users/1', {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        dispatch({
+            type: 'shows/setSavedShows',
+            payload: data.shows
         })
-        .then(resp => resp.json())
-        .then(data => {
-            dispatch({
-                type: 'shows/setSavedShows',
-                payload: data.shows
-            })
-        })
-        .catch(error => {
-            dispatch({ type: 'shows/error', payload: error })
-        });
-    }
+    })
+    .catch(error => {
+        dispatch({ type: 'shows/error', payload: error })
+    });
+}
 
 export function saveShow(show) {
     return async function saveShowThunk(dispatch, getState) {

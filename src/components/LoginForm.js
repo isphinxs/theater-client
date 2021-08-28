@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveUser } from '../reducers/showsReducer';
+import { checkForSavedShows } from '../reducers/showsReducer';
+
 
 function LoginForm() {
     const [email, setEmail] = useState("");
@@ -20,9 +22,9 @@ function LoginForm() {
         event.preventDefault();
         const saveUserThunk = saveUser(email, password);
         dispatch(saveUserThunk);
+        dispatch(checkForSavedShows);
     }
 
-    
     return(
         <div id="login-form">
             <h3>Sign in to Goodtheater</h3>
