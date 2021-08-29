@@ -18,7 +18,6 @@ function ShowsContainer(props) {
     }
 
     useEffect(() => {
-        console.log("Rerender shows container");
         if (props.isLoggedIn) {
             dispatch(checkForSavedShows);
         }

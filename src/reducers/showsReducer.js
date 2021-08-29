@@ -80,6 +80,7 @@ function showsReducer(state = initialState, action) {
         case 'user/logout': {
             return {
                 ...state,
+                savedShows: [],
                 isLoading: false,
                 isLoggedIn: false,
                 error: null,
