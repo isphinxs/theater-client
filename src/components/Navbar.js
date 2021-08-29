@@ -1,17 +1,24 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Login from './Login';
 
 function Navbar(props) {
+    const path = useLocation().pathname;
+    const [display, setDisplay] = useState(
+        path === "/" ? true : false
+    )
     const dispatch = useDispatch();
 
-    const handleClick = event => {
-        console.log("Logging out!")
+    const handleClick = () => {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         dispatch({ type: 'user/logout' });
     }
+
+    useEffect(() => {
+        setDisplay(path === "/" ? true : false)
+    })
 
     return(
         <div id="navbar">
@@ -20,7 +27,7 @@ function Navbar(props) {
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/shows/saved" exact>My Shows</NavLink></li>
                 <li><NavLink to="/shows" exact>Browse</NavLink></li>
-                { !props.isLoggedIn && <Login /> }
+                { !props.isLoggedIn && display && <Login /> }
                 { props.isLoggedIn && <li><NavLink to="/" onClick={handleClick}>Log Out</NavLink></li>}
             </ul>
         </div>
