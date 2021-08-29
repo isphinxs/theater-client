@@ -2,6 +2,7 @@ const initialState = {
     shows: [],
     savedShows: [],
     isLoading: false,
+    isLoggedIn: false,
     error: null,
     user: {}
 }
@@ -71,8 +72,18 @@ function showsReducer(state = initialState, action) {
             return {
                 ...state,
                 isLoading: false,
+                isLoggedIn: true,
                 error: null,
                 user: action.payload
+            }
+        }
+        case 'user/logout': {
+            return {
+                ...state,
+                isLoading: false,
+                isLoggedIn: false,
+                error: null,
+                user: {}
             }
         }
         case 'user/error': {
@@ -103,10 +114,11 @@ export function fetchShows(dispatch) {
 }
 
 export function checkForSavedShows(dispatch, getState) {
+    debugger;
     dispatch({ type: 'shows/loading' });
     fetch(`http://localhost:3000/users/${getState().user.id}`, {
         headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`
+            Authorization: `Bearer ${localStorage.getItem("user").token}`
         }
     })
     .then(resp => resp.json())
@@ -143,7 +155,7 @@ export function saveShow(show) {
                 headers: {
                     'content-type': 'application/json',
                     'accepts': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                    // Authorization: `Bearer ${localStorage.getItem("user").token}`
                 },
                 body: JSON.stringify(user)
             });
@@ -206,7 +218,8 @@ export function saveUser(email, password) {
             })
                 .then(resp => resp.json())
                 .then(data => {
-                    localStorage.setItem("token", data.jwt);
+                    localStorage.setItem("user", JSON.stringify(data.user));
+                    localStorage.setItem('token', data.jwt);
                     dispatch({ type: 'user/saveUser', payload: data.user});
                 })
         } catch(error) {

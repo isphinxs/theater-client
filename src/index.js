@@ -10,7 +10,7 @@ import { fetchShows } from './reducers/showsReducer';
 import { checkForSavedShows } from './reducers/showsReducer';
 
 store.dispatch(fetchShows);
-store.dispatch(checkForSavedShows);
+// store.dispatch(checkForSavedShows);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -5,7 +5,7 @@ const SavedShowsList = props => {
     return(
         <div id="shows-list">
             <ul>
-                {props.shows.length > 0 ? props.shows.map(show => {
+                {props.shows && props.shows.length > 0 ? props.shows.map(show => {
                     return (
                         <li key={show.id}>
                             <NavLink to={`/shows/${show.id}`}>{show.title}</NavLink>
