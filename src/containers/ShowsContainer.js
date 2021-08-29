@@ -1,23 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import Show from '../components/Show';
 import ShowsList from '../components/ShowsList';
 import SavedShows from '../components/SavedShows';
-import { saveShow } from '../reducers/showsReducer';
+import { saveShow, checkForSavedShows } from '../reducers/showsReducer';
 
 const selectShows = state => state.shows;
-// const selectSavedShows = state => state.savedShows;
 
-function ShowsContainer() {
+function ShowsContainer(props) {
     const shows = useSelector(selectShows);
-    // const savedShows = useSelector(selectSavedShows);
     const dispatch = useDispatch();
 
     const handleClick = show => {
         const saveShowThunk = saveShow(show);
         dispatch(saveShowThunk);
     }
+
+    useEffect(() => {
+        console.log("Rerender shows container");
+        if (props.isLoggedIn) {
+            dispatch(checkForSavedShows);
+        }
+    }, [])
 
     return(
         <div id="shows-container">

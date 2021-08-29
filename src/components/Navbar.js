@@ -1,26 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Login from './Login';
 
-// const selectUser = state => state.user;
-
 function Navbar(props) {
-    // const user = useSelector(selectUser);
     const dispatch = useDispatch();
 
-    // let user = localStorage.getItem("user");
-
     const handleClick = event => {
-        // event.preventDefault();
-        // debugger;
         console.log("Logging out!")
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         dispatch({ type: 'user/logout' });
     }
 
-    debugger;
     return(
         <div id="navbar">
             <ul>

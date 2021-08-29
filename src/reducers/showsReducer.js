@@ -114,11 +114,10 @@ export function fetchShows(dispatch) {
 }
 
 export function checkForSavedShows(dispatch, getState) {
-    debugger;
     dispatch({ type: 'shows/loading' });
     fetch(`http://localhost:3000/users/${getState().user.id}`, {
         headers: {
-            Authorization: `Bearer ${localStorage.getItem("user").token}`
+            Authorization: `Bearer ${localStorage.getItem("token")}`
         }
     })
     .then(resp => resp.json())
@@ -155,7 +154,7 @@ export function saveShow(show) {
                 headers: {
                     'content-type': 'application/json',
                     'accepts': 'application/json',
-                    // Authorization: `Bearer ${localStorage.getItem("user").token}`
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 },
                 body: JSON.stringify(user)
             });
