@@ -203,7 +203,30 @@ export function removeShow(show) {
         }
     }
 }
-    
+
+export function createUser(name, email, password) {
+    return async function createUserThunk(dispatch) {
+        dispatch({ type: 'user/authenticating' });
+        try {
+            fetch('http://localhost:3000/users', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'accepts': 'application/json'
+                },
+                body: JSON.stringify({ user: { name: name, email: email, password: password } })
+            })
+                .then(resp => resp.json())
+                .then(data => {
+                    localStorage.setItem("user", JSON.stringify(data.user));
+                    localStorage.setItem('token', data.jwt);
+                    dispatch({ type: 'user/saveUser', payload: data.user});
+                })
+        } catch(error) {
+            dispatch({ type: 'user/error', payload: error });
+        }
+    }
+}
 export function saveUser(email, password) {
     return async function saveUserThunk(dispatch) {
         dispatch({ type: 'user/authenticating' });

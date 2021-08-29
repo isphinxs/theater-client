@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { saveUser } from '../reducers/showsReducer';
+import { createUser } from '../reducers/showsReducer';
 
-function LoginForm() {
+function SignupForm() {
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const history = useHistory();
  
+    const handleNameChange = event => {
+        setName(event.target.value);
+    }
+
     const handleEmailChange = event => {
         setEmail(event.target.value);
     }
@@ -19,15 +24,23 @@ function LoginForm() {
 
     const handleSubmit = event => {
         event.preventDefault();
-        const saveUserThunk = saveUser(email, password);
-        dispatch(saveUserThunk);
+        const createUserThunk = createUser(name, email, password);
+        dispatch(createUserThunk);
         history.push("/");
     }
 
     return(
         <div className="user-form">
-            <h3>Sign in to Goodtheater</h3>
+            <h3>Sign up for Goodtheater</h3>
             <form onSubmit={handleSubmit}>
+                <label htmlFor="email">Name</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    onChange={event => handleNameChange(event)}
+                    value={name}
+                />
+                <br />
                 <label htmlFor="email">Email address</label>
                 <input 
                     type="text" 
@@ -44,10 +57,10 @@ function LoginForm() {
                     value={password}
                 />
                 <br />
-                <input type="submit" value="Sign up" />
+                <input type="submit" value="Sign in" />
             </form>
         </div>
     )
 }
 
-export default LoginForm;
+export default SignupForm;

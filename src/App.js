@@ -5,6 +5,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Banner from './components/Banner';
 import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 import ShowsContainer from './containers/ShowsContainer';
 import Footer from './components/Footer';
 
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/login">
             <LoginForm />
+          </Route>
+          <Route path="/signup">
+            <SignupForm />
           </Route>
           <Route path="/">
             <h3>Home</h3>
