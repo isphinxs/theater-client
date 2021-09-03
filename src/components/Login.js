@@ -18,7 +18,7 @@ function Login() {
             <h3>Discover &amp; see more</h3>
             {/* <button id="google" onClick={handleClick}>Continue with Google</button> */}
             <button id="auth" onClick={handleClick}>Sign up with email</button>
-            <h5>Already a member? <NavLink to="/login">Sign in</NavLink></h5>
+            <h5>Already a member? <NavLink to="/login" className="gr-link">Sign in</NavLink></h5>
         </div>
     )
 }
