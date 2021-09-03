@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import './App.css';
 import Navbar from './components/Navbar';
 import Banner from './components/Banner';
+import Home from './components/Home';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import ShowsContainer from './containers/ShowsContainer';
@@ -30,7 +31,7 @@ function App() {
             <SignupForm />
           </Route>
           <Route path="/">
-            <h3>Home</h3>
+            <Home />
           </Route>
         </Switch>
         <Footer />

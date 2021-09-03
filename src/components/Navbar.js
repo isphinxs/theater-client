@@ -18,7 +18,7 @@ function Navbar(props) {
 
     useEffect(() => {
         setDisplay(path === "/" ? true : false)
-    })
+    }, [path])
 
     return(
         <div id="navbar">
