@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import loading from '../loading.svg';
 
 const SavedShowsList = props => {
     return(
@@ -12,7 +13,7 @@ const SavedShowsList = props => {
                             <button onClick={() => props.handleClick(show)}>Remove</button>
                         </li>
                     )
-                }) : <li>Loading</li>}
+                }) : <li><img className="illustration" src={loading} /></li>}
             </ul>
         </div>
     )
