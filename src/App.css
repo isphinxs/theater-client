@@ -103,6 +103,22 @@ li {
 }
 
 
+/* Buttons */
+
+button.gr-button {
+  background-color: #00635D;
+  color: white;
+  min-width: 200px;
+  padding: 0.5em;
+  border: none;
+  border-radius: 3px;
+}
+
+button.gr-button:hover {
+  background-color: #00978d;
+}
+
+
 /* Login */
 
 div#login {

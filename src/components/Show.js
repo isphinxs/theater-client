@@ -24,7 +24,7 @@ const Show = props => {
                 <li>Open Date: {props.show.open_date}</li>
                 <li>Type: Musical</li> {/*toggle musical/theater */}
             </ul> 
-            <button onClick={handleClick}>Add to Saved</button>
+            <button className="gr-button" onClick={handleClick}>Add to Saved</button>
         </div>
     )
 }
