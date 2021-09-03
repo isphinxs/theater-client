@@ -44,7 +44,7 @@ function LoginForm() {
                     value={password}
                 />
                 <br />
-                <input type="submit" value="Sign up" />
+                <input type="submit" value="Sign in" />
             </form>
         </div>
     )

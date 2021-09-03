@@ -7,15 +7,13 @@ import reportWebVitals from './reportWebVitals';
 
 import store from './store';
 import { fetchShows } from './reducers/showsReducer';
-import { checkForSavedShows } from './reducers/showsReducer';
 
 store.dispatch(fetchShows);
-// store.dispatch(checkForSavedShows);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+        <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
