@@ -21,7 +21,7 @@ function LoginForm() {
         event.preventDefault();
         const saveUserThunk = saveUser(email, password);
         dispatch(saveUserThunk);
-        history.push("/");
+        history.push("/shows/saved");
     }
 
     return(
