@@ -13,8 +13,8 @@ function Footer() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>About us</td>
-                        <td>Advertise</td>
+                        <td><a href="https://www.linkedin.com/in/sam-ostrowski/">About us</a></td>
+                        <td><a href="https://github.com/isphinxs">Advertise</a></td>
                         <td>
                             <a href="https://github.com/isphinxs"><i className="fab fa-github"></i></a> &nbsp;
                             <a href="http://youtube.com"><i className="fab fa-youtube-square"></i></a> &nbsp; 
@@ -24,7 +24,7 @@ function Footer() {
                 </tbody>
             </table>
             <br />
-            <span>Banner Credit: Photo by <a href="https://unsplash.com/@alevisionco?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">alevision.co</a> on <a href="https://unsplash.com/s/photos/theater?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></span>
+            <span>Banner Credit: Photo by <a className="gr-link" href="https://unsplash.com/@alevisionco?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">alevision.co</a> on <a className="gr-link" href="https://unsplash.com/s/photos/theater?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></span>
         </div>
     );
 }
