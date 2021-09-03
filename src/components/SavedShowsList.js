@@ -13,7 +13,7 @@ const SavedShowsList = props => {
                             <button onClick={() => props.handleClick(show)}>Remove</button>
                         </li>
                     )
-                }) : <li><img className="illustration" src={loading} /></li>}
+                }) : <li><img alt="" className="illustration" src={loading} /></li>}
             </ul>
         </div>
     )
