@@ -253,3 +253,9 @@ div.error {
   background-color: white;
   padding: 2em;
 }
+
+.alert-dismissible {
+  max-width: 50%;
+  margin: 1em auto;
+  padding: 2em;
+}
