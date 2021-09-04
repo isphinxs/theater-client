@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import AlertDismissible from './AlertDismissible';
 
 const Show = props => {
     const history = useHistory();
@@ -15,7 +14,6 @@ const Show = props => {
 
     return (
         <div>
-            {/* <AlertDismissible message={`${props.show.title} successfully added!`} /> */}
             <h3>{props.show.title}</h3>
             <ul>
                 <li>Theater: {props.show.theater}</li>
