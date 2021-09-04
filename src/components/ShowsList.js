@@ -6,7 +6,7 @@ const ShowsList = props => {
         <div id="shows-list">
             <ul>
                 <h3>Shows</h3>
-                {props.shows ? props.shows.map(show => <li key={show.id}><NavLink to={`/shows/${show.id}`}>{show.title}</NavLink></li>) : <li>Loading</li>}
+                {props.shows ? props.shows.map(show => <li key={show.id}><NavLink to={`/shows/${show.id}`} className="gr-link">{show.title}</NavLink></li>) : <li>Loading</li>}
             </ul>
         </div>
     )
