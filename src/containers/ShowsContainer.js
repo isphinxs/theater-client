@@ -27,7 +27,7 @@ function ShowsContainer(props) {
         <div id="shows-container">
             <Switch>
                 <Route exact path="/shows" component={() => <ShowsList shows={shows} />} />
-                <Route path="/shows/saved" component={() => <SavedShows />} />
+                <Route path="/shows/saved" component={() => <SavedShows isLoggedIn={props.isLoggedIn} />} />
                 <Route path="/shows/:id" component={(routeInfo) => {
                     const routeId = parseInt(routeInfo.match.params.id);
                     const show = shows.find(s => s.id === routeId);

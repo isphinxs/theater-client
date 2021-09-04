@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import loading from '../loading.svg';
 
 const SavedShowsList = props => {
+
     return(
         <div id="shows-list">
             <ul>
@@ -10,7 +11,7 @@ const SavedShowsList = props => {
                     return (
                         <li key={show.id}>
                             <NavLink to={`/shows/${show.id}`}>{show.title}</NavLink> &nbsp;
-                            <button class="gr-button" onClick={() => props.handleClick(show)}>Remove</button>
+                            <button className="gr-button" onClick={() => props.handleClick(show)}>Remove</button>
                         </li>
                     )
                 }) : <li><img alt="" className="illustration" src={loading} /></li>}

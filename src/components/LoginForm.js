@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { saveUser } from '../reducers/showsReducer';
 
@@ -7,7 +6,6 @@ function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
-    const history = useHistory();
  
     const handleEmailChange = event => {
         setEmail(event.target.value);
@@ -21,7 +19,6 @@ function LoginForm() {
         event.preventDefault();
         const saveUserThunk = saveUser(email, password);
         dispatch(saveUserThunk);
-        history.push("/shows/saved");
     }
 
     return(

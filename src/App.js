@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { useSelector } from 'react-redux';
 import './App.css';
 import Navbar from './components/Navbar';
@@ -25,7 +26,7 @@ function App() {
             <ShowsContainer isLoggedIn={isLoggedIn} />
           </Route>
           <Route path="/login">
-            <LoginForm />
+            { isLoggedIn ? <Redirect to="/shows/saved" /> : <LoginForm /> }
           </Route>
           <Route path="/signup">
             <SignupForm />
