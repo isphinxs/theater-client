@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { saveUser } from '../reducers/showsReducer';
 
 function LoginForm() {
@@ -43,6 +44,8 @@ function LoginForm() {
                 <br />
                 <input type="submit" value="Sign in" />
             </form>
+            <br />
+            <h5>Or, <NavLink to="/signup" className="gr-link">sign up here</NavLink></h5>
         </div>
     )
 }

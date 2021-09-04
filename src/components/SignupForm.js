@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../reducers/showsReducer';
 
@@ -59,6 +59,8 @@ function SignupForm() {
                 <br />
                 <input type="submit" value="Sign up" />
             </form>
+            <br />
+            <h5>Already a member? <NavLink to="/login" className="gr-link">Sign in</NavLink></h5>
         </div>
     )
 }
