@@ -5,6 +5,7 @@ import Show from '../components/Show';
 import ShowsList from '../components/ShowsList';
 import SavedShows from './SavedShowsContainer';
 import { saveShow, checkForSavedShows } from '../reducers/showsReducer';
+import Error from '../components/Error';
 
 const selectShows = state => state.shows;
 
@@ -31,7 +32,7 @@ function ShowsContainer(props) {
                 <Route path="/shows/:id" component={(routeInfo) => {
                     const routeId = parseInt(routeInfo.match.params.id);
                     const show = shows.find(s => s.id === routeId);
-                    return show ? <Show show={show} handleClick={handleClick} isLoggedIn={props.isLoggedIn} /> : null;
+                    return show ? <Show show={show} handleClick={handleClick} isLoggedIn={props.isLoggedIn} /> : <Error />;
                 }} />
             </Switch>
         </div>

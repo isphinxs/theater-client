@@ -233,3 +233,11 @@ i {
   font-size: 1.5em;
   color: #908e86;
 }
+
+
+/* Error */
+
+div.error {
+  background-color: white;
+  padding: 2em;
+}

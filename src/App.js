@@ -10,17 +10,22 @@ import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import ShowsContainer from './containers/ShowsContainer';
 import Footer from './components/Footer';
+import AlertDismissible from './components/AlertDismissible';
+import Error from './components/Error';
 
 const selectIsLoggedIn = state => state.isLoggedIn;
+const selectError = state => state.error;
 
 function App() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const error = useSelector(selectError);
 
   return (
     <Router>
       <div className="App">
         <Navbar isLoggedIn={isLoggedIn} />
         <Banner />
+        {/* <AlertDismissible message={error} /> */}
         <Switch>
           <Route path="/shows">
             <ShowsContainer isLoggedIn={isLoggedIn} />
@@ -31,8 +36,11 @@ function App() {
           <Route path="/signup">
             <SignupForm />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <Home />
+          </Route>
+          <Route path="*">
+            <Error />
           </Route>
         </Switch>
         <Footer />

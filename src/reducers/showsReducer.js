@@ -163,10 +163,10 @@ export function saveShow(show) {
             
             // update Redux state
             dispatch({type: 'shows/saveShow', payload: show});
-            
+
             return data;
         } catch(error) {
-            dispatch({ type: 'shows/error' });
+            dispatch({ type: 'shows/error', payload: error });
         }
     }
 }
@@ -199,7 +199,7 @@ export function removeShow(show) {
             
             return data;
         } catch(error) {
-            dispatch({ type: 'shows/error' });
+            dispatch({ type: 'shows/error', payload: error });
         }
     }
 }
