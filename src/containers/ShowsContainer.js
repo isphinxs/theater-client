@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import Show from '../components/Show';
 import ShowsList from '../components/ShowsList';
-import SavedShows from '../components/SavedShows';
+import SavedShows from './SavedShowsContainer';
 import { saveShow, checkForSavedShows } from '../reducers/showsReducer';
 
 const selectShows = state => state.shows;

@@ -6,6 +6,7 @@ const SavedShowsList = props => {
 
     return(
         <div id="shows-list">
+            <h3>My Shows</h3>
             <ul>
                 {props.shows && props.shows.length > 0 ? props.shows.map(show => {
                     return (
