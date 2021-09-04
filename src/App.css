@@ -47,6 +47,18 @@ body {
   font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
 }
 
+h1, h2, h3, h4, h5 {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
 a {
   color: #181818;
   text-decoration: none;
