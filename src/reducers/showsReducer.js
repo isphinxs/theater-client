@@ -218,9 +218,13 @@ export function createUser(name, email, password) {
             })
                 .then(resp => resp.json())
                 .then(data => {
-                    localStorage.setItem("user", JSON.stringify(data.user));
-                    localStorage.setItem('token', data.jwt);
-                    dispatch({ type: 'user/saveUser', payload: data.user});
+                    if (data.error) {
+                        dispatch({ type: 'user/error', payload: data.error });
+                    } else {
+                        localStorage.setItem("user", JSON.stringify(data.user));
+                        localStorage.setItem('token', data.jwt);
+                        dispatch({ type: 'user/saveUser', payload: data.user});
+                    }
                 })
         } catch(error) {
             dispatch({ type: 'user/error', payload: error });
@@ -241,9 +245,13 @@ export function saveUser(email, password) {
             })
                 .then(resp => resp.json())
                 .then(data => {
-                    localStorage.setItem("user", JSON.stringify(data.user));
-                    localStorage.setItem('token', data.jwt);
-                    dispatch({ type: 'user/saveUser', payload: data.user});
+                    if (data.error) {
+                        dispatch({ type: 'user/error', payload: data.error });
+                    } else {
+                        localStorage.setItem("user", JSON.stringify(data.user));
+                        localStorage.setItem('token', data.jwt);
+                        dispatch({ type: 'user/saveUser', payload: data.user});
+                    }
                 })
         } catch(error) {
             dispatch({ type: 'user/error', payload: error });

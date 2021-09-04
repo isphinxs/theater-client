@@ -6,7 +6,7 @@ function AlertDismissible(props) {
 
     if (show) {
         return(
-            <Alert variant="success" onClose={() => setShow(false)} dismissible>{props.message}</Alert>
+            <Alert variant={props.variant ? props.variant : "success"} onClose={() => setShow(false)} dismissible>{props.message}</Alert>
         )
     }
     return null; 

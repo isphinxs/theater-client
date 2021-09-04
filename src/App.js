@@ -25,7 +25,7 @@ function App() {
       <div className="App">
         <Navbar isLoggedIn={isLoggedIn} />
         <Banner />
-        {/* <AlertDismissible message={error} /> */}
+        { error && <AlertDismissible message={error} variant="danger" /> }
         <Switch>
           <Route path="/shows">
             <ShowsContainer isLoggedIn={isLoggedIn} />
