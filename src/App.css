@@ -221,14 +221,14 @@ div.box-right {
 
 div#footer {
   background-color: #f9f8f4;
-  position: absolute;
+  position: sticky;
   bottom: 0;
   justify-content: center;
+  margin: 0.5em;
   width: 100%
 }
 
 div#footer h5, span {
-  margin: 2em;
   display: inline-block;
 }
 
