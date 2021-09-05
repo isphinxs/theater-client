@@ -19,7 +19,7 @@ function Footer() {
                             <a href="https://github.com/isphinxs/theater-client"><i className="fab fa-github"></i></a> &nbsp;
                             <a href="https://youtu.be/sqfp5cil7Gs"><i className="fab fa-youtube-square"></i></a> &nbsp; 
                             <a href="https://www.linkedin.com/in/sam-ostrowski/"><i className="fab fa-linkedin"></i></a> &nbsp;
-                            <a href="https://medium.com/@isphinxs/setting-up-jwt-on-a-react-redux-front-end-8b4b6c351bb4"><i class="fab fa-medium"></i></a>
+                            <a href="https://medium.com/@isphinxs/setting-up-jwt-on-a-react-redux-front-end-8b4b6c351bb4"><i className="fab fa-medium"></i></a>
                         </td>
                     </tr>
                 </tbody>
