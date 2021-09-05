@@ -25,7 +25,7 @@ function ShowsContainer(props) {
         if (props.isLoggedIn) {
             dispatch(checkForSavedShows);
         }
-    }, [])
+    }, [dispatch, props.isLoggedIn])
 
     return(
         <div id="shows-container">
