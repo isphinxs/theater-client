@@ -102,7 +102,7 @@ function showsReducer(state = initialState, action) {
 
 export function fetchShows(dispatch) {
     dispatch({ type: 'shows/loading' });
-    fetch('http://localhost:3000/shows')
+    fetch('https://rocky-mountain-05852.herokuapp.com/shows')
         .then(resp => resp.json())
         .then(data => dispatch({
                 type: 'shows/setShows',
@@ -116,7 +116,7 @@ export function fetchShows(dispatch) {
 
 export function checkForSavedShows(dispatch, getState) {
     dispatch({ type: 'shows/loading' });
-    fetch(`http://localhost:3000/users/${getState().user.id}`, {
+    fetch(`https://rocky-mountain-05852.herokuapp.com/users/${getState().user.id}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`
         }
@@ -150,7 +150,7 @@ export function saveShow(show) {
         }
 
         try {
-            const resp = await fetch(`http://localhost:3000/users/${getState().user.id}`, {
+            const resp = await fetch(`https://rocky-mountain-05852.herokuapp.com/users/${getState().user.id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
@@ -184,7 +184,7 @@ export function removeShow(show) {
         }
         
         try {
-            const resp = await fetch(`http://localhost:3000/users/${getState().user.id}`, {
+            const resp = await fetch(`https://rocky-mountain-05852.herokuapp.com/users/${getState().user.id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
@@ -209,7 +209,7 @@ export function createUser(name, email, password) {
     return async function createUserThunk(dispatch) {
         dispatch({ type: 'user/authenticating' });
         try {
-            fetch('http://localhost:3000/users', {
+            fetch('https://rocky-mountain-05852.herokuapp.com/users', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -236,7 +236,7 @@ export function saveUser(email, password) {
     return async function saveUserThunk(dispatch) {
         dispatch({ type: 'user/authenticating' });
         try {
-            fetch('http://localhost:3000/api/v1/auth', {
+            fetch('https://rocky-mountain-05852.herokuapp.com/api/v1/auth', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
