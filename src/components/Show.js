@@ -4,9 +4,14 @@ import { useHistory } from 'react-router-dom';
 const Show = props => {
     const history = useHistory();
 
-    const handleClick = () => {
+    const handleClick = event => {
         if (props.isLoggedIn) {
-            props.handleClick(props.show);
+            if (event.target.textContent === 'Add to Saved') {
+                props.handleClick(props.show);
+            } 
+            if (event.target.textContent === 'Edit') {
+                debugger;
+            }
         } else {
             history.push("/signup");
         }
@@ -25,6 +30,7 @@ const Show = props => {
                 <li>Type: Musical</li> {/*toggle musical/theater */}
             </ul> 
             <button className="gr-button" onClick={handleClick}>Add to Saved</button>
+            <button className="gr-button" onClick={handleClick}>Edit</button>
         </div>
     )
 }

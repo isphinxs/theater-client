@@ -1,5 +1,5 @@
-const URL = 'https://rocky-mountain-05852.herokuapp.com';
-// const URL = 'http://localhost:3000';
+// const URL = 'https://rocky-mountain-05852.herokuapp.com';
+const URL = 'http://localhost:3000';
 
 const initialState = {
     shows: [],
