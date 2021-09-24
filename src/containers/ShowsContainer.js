@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Show from '../components/Show';
 import ShowsList from '../components/ShowsList';
 import SavedShows from './SavedShowsContainer';
+import EditShowForm from '../components/shows/EditShowForm';
 import { saveShow, checkForSavedShows } from '../reducers/showsReducer';
 import AlertDismissible from '../components/AlertDismissible';
 import Error from '../components/Error';
@@ -37,6 +38,11 @@ function ShowsContainer(props) {
                     const routeId = parseInt(routeInfo.match.params.id);
                     const show = shows.find(s => s.id === routeId);
                     return show ? <Show show={show} handleClick={handleClick} isLoggedIn={props.isLoggedIn} /> : <Error />;
+                }} />
+                <Route path="/shows/:id/edit" component={(routeInfo) => {
+                    const routeId = parseInt(routeInfo.match.params.id);
+                    const show = shows.find(s => s.id === routeId);
+                    return show ? <EditShowForm show={show} /> : <Error />;
                 }} />
             </Switch>
         </div>

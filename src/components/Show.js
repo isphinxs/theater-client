@@ -11,6 +11,7 @@ const Show = props => {
             } 
             if (event.target.textContent === 'Edit') {
                 debugger;
+                
             }
         } else {
             history.push("/signup");
