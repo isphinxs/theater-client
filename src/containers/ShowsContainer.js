@@ -34,15 +34,16 @@ function ShowsContainer(props) {
             <Switch>
                 <Route exact path="/shows" render={() => <ShowsList shows={shows} />} />
                 <Route path="/shows/saved" render={() => <SavedShows isLoggedIn={props.isLoggedIn} />} />
-                <Route path="/shows/:id" component={(routeInfo) => {
+                <Route exact path="/shows/:id" component={(routeInfo) => {
                     const routeId = parseInt(routeInfo.match.params.id);
                     const show = shows.find(s => s.id === routeId);
                     return show ? <Show show={show} handleClick={handleClick} isLoggedIn={props.isLoggedIn} /> : <Error />;
                 }} />
                 <Route path="/shows/:id/edit" component={(routeInfo) => {
-                    const routeId = parseInt(routeInfo.match.params.id);
-                    const show = shows.find(s => s.id === routeId);
-                    return show ? <EditShowForm show={show} /> : <Error />;
+                    // const routeId = parseInt(routeInfo.match.params.id);
+                    // const show = shows.find(s => s.id === routeId);
+                    // return show ? <EditShowForm show={show} /> : <Error />;
+                    return <EditShowForm /> 
                 }} />
             </Switch>
         </div>

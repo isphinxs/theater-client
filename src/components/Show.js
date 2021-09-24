@@ -10,8 +10,7 @@ const Show = props => {
                 props.handleClick(props.show);
             } 
             if (event.target.textContent === 'Edit') {
-                debugger;
-                
+                history.push(`/shows/${props.show.id}/edit`);
             }
         } else {
             history.push("/signup");
