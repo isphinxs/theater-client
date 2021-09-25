@@ -8,7 +8,7 @@ function EditShowForm(props) {
 
     return (
         <div className="user-form">
-            <h1>{props.show.title}</h1>
+            <h3>{props.show.title}</h3>
             <form onSubmit={handleSubmit}>
                 <label for="theater">Theater</label>
                 <input type="text" id="theater" value={props.show.theater} />
@@ -26,10 +26,13 @@ function EditShowForm(props) {
                 <input type="text" id="book" value={props.show.book} />
                 <br />
                 <label for="open-date">Open Date</label>
-                <input type="text" id="open-date" value={props.show.open_date} />
+                <input type="date" id="open-date" value={props.show.open_date} />
                 <br />
                 <label for="type">Type</label>
-                <input type="text" id="type" value="Musical" />
+                <select value={props.show.type}>
+                    <option value="Musical">Musical</option>
+                    <option value="Play">Play</option>
+                </select>
                 <br />
                 <input type="submit" value="Edit" />
             </form>
