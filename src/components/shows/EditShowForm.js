@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { updateShow } from '../../actions/showActions';
 
 function EditShowForm(props) {
-    const [theater, setTheater] = useState(props.show.theather);
+    const [theater, setTheater] = useState(props.show.theater);
     const [director, setDirector] = useState(props.show.director);
     const [music, setMusic] = useState(props.show.music);
     const [lyrics, setLyrics] = useState(props.show.lyrics);
@@ -11,12 +12,14 @@ function EditShowForm(props) {
     const [openDate, setOpenDate] = useState(props.show.open_date);
     const [type, setType] = useState(props.show.type);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleSubmit = event => {
         event.preventDefault();
-        const show = { theater, director, music, lyrics, book, openDate, type };
+        const show = { id: props.show.id, theater, director, music, lyrics, book, openDate, type };
         const updateShowThunk = updateShow(show);
         dispatch(updateShowThunk);
+        history.push(`/shows/${props.show.id}`);
     }
 
     const handleChange = event => {
@@ -51,25 +54,25 @@ function EditShowForm(props) {
         <div className="user-form">
             <h3>{props.show.title}</h3>
             <form onSubmit={handleSubmit} >
-                <label for="theater">Theater</label>
+                <label htmlFor="theater">Theater</label>
                 <input type="text" id="theater" value={theater} name="theater" onChange={handleChange} />
                 <br />
-                <label for="director">Director</label>
+                <label htmlFor="director">Director</label>
                 <input type="text" id="director" value={director} name="director" onChange={handleChange} />
                 <br />
-                <label for="music">Music By</label>
+                <label htmlFor="music">Music By</label>
                 <input type="text" id="music" value={music} name="music" onChange={handleChange} />
                 <br />
-                <label for="lyrics">Lyrics By</label>
+                <label htmlFor="lyrics">Lyrics By</label>
                 <input type="text" id="lyrics" value={lyrics} name="lyrics" onChange={handleChange} />
                 <br />
-                <label for="book">Book By</label>
+                <label htmlFor="book">Book By</label>
                 <input type="text" id="book" value={book} name="book" onChange={handleChange} />
                 <br />
-                <label for="open-date">Open Date</label>
+                <label htmlFor="open-date">Open Date</label>
                 <input type="date" id="open-date" value={openDate} name="open-date" onChange={handleChange} />
                 <br />
-                <label for="type">Type</label>
+                <label htmlFor="type">Type</label>
                 <select id="type" value={type} name="type" onChange={handleChange}>
                     <option value="Musical">Musical</option>
                     <option value="Play">Play</option>

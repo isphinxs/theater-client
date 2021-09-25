@@ -58,6 +58,18 @@ function showsReducer(state = initialState, action) {
                 error: null
             }
         }
+        case 'shows/updateShow': {
+            const index = state.shows.findIndex(s => s.id === action.payload.id);
+            const newShows = [...state.shows];
+            newShows[index] = action.payload;
+
+            return {
+                ...state,
+                shows: newShows,
+                isLoading: false,
+                error: null
+            }
+        }
         case 'shows/error': {
             return {
                 ...state,

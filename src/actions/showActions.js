@@ -2,9 +2,9 @@
 const URL = 'http://localhost:3000';
 
 export function updateShow(show) {
-    return async function updateShowThunk(dispatch, getState) {
+    return async function updateShowThunk(dispatch) {
         try {
-            const resp = await fetch(`${URL}/users/${getState().user.id}`, {
+            const resp = await fetch(`${URL}/shows/${show.id}`, {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json',
@@ -14,14 +14,13 @@ export function updateShow(show) {
                 body: JSON.stringify(show)
             });
             const data = await resp.json();
-            debugger;
-            // update Redux state
-            // dispatch({type: 'shows/saveShow', payload: show});
 
+            // update Redux state
+            dispatch({type: 'shows/updateShow', payload: data});
             return data;
+
         } catch(error) {
             dispatch({ type: 'shows/error', payload: error });
         }
-
     }
 }
