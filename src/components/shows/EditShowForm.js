@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateShow } from '../../actions/showActions';
 
 function EditShowForm(props) {
     const [theater, setTheater] = useState(props.show.theather);
@@ -8,10 +10,13 @@ function EditShowForm(props) {
     const [book, setBook] = useState(props.show.book);
     const [openDate, setOpenDate] = useState(props.show.open_date);
     const [type, setType] = useState(props.show.type);
+    const dispatch = useDispatch();
 
     const handleSubmit = event => {
         event.preventDefault();
-        debugger;
+        const show = { theater, director, music, lyrics, book, openDate, type };
+        const updateShowThunk = updateShow(show);
+        dispatch(updateShowThunk);
     }
 
     const handleChange = event => {
@@ -62,7 +67,7 @@ function EditShowForm(props) {
                 <input type="text" id="book" value={book} name="book" onChange={handleChange} />
                 <br />
                 <label for="open-date">Open Date</label>
-                <input type="date" id="open-date" value={open_date} name="open-date" onChange={handleChange} />
+                <input type="date" id="open-date" value={openDate} name="open-date" onChange={handleChange} />
                 <br />
                 <label for="type">Type</label>
                 <select id="type" value={type} name="type" onChange={handleChange}>
@@ -70,7 +75,7 @@ function EditShowForm(props) {
                     <option value="Play">Play</option>
                 </select>
                 <br />
-                <input type="submit" value="Edit" />
+                <input type="submit" value="Submit Edits" />
             </form>
         </div>
     )
