@@ -1,5 +1,6 @@
-// const URL = 'https://rocky-mountain-05852.herokuapp.com';
-const URL = 'http://localhost:3000';
+import { config } from '../Constants';
+
+const URL = config.url;
 
 const initialState = {
     shows: [],
