@@ -13,7 +13,6 @@ function Home() {
                 <p>Chances are your friends are discussing their favorite (and least favorite) shows on Goodtheater.</p>
             </div>
             <img alt="" className="illustration" src={illustration} />
-            <span>Running in {process.env.NODE_ENV}</span>
         </div>
     )
 }
