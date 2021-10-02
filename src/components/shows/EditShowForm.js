@@ -46,7 +46,8 @@ function EditShowForm(props) {
             case "type":
                 setType(event.target.value);
                 break;
-
+            case default:
+                break;
         }
     }
 
