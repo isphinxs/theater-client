@@ -4,10 +4,20 @@ const ReviewShowForm = props => {
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState(0);
 
-    const handleChange = () => {
-        debugger;
+    const handleChange = event => {
+        const name = event.target.name;
+        if (name === "rating") {
+            setRating(parseInt(event.target.value));
+        }
+        if (name === "comment") {
+            setComment(event.target.comment);
+        }
     }
     
+    const handleClick = () => {
+        debugger;
+    }
+
     const handleSubmit = event => {
         event.preventDefault();
         debugger;
@@ -30,6 +40,7 @@ const ReviewShowForm = props => {
                 <textarea id="comment" value={comment} name="comment" onChange={handleChange} />
                 <br />
                 <input type="submit" value="Submit" />
+                <input type="button" onClick={handleClick} value="Cancel" />
             </form>
         </div>
     )
