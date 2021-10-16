@@ -19,11 +19,11 @@ const ReviewShowForm = props => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="rating">Rating</label>
                 <div className="radio">
-                    <input type="radio" value="1" name="1" checked={rating === "1"} onChange={handleChange} />1
-                    <input type="radio" value="2" name="2" checked={rating === "2"} onChange={handleChange} />2
-                    <input type="radio" value="3" name="3" checked={rating === "3"} onChange={handleChange} />3
-                    <input type="radio" value="4" name="4" checked={rating === "4"} onChange={handleChange} />4
-                    <input type="radio" value="5" name="5" checked={rating === "5"} onChange={handleChange} />5
+                    <input type="radio" id="rating-1" value="1" name="rating" checked={rating === "1"} onChange={handleChange} />1
+                    <input type="radio" id="rating-2" value="2" name="rating" checked={rating === "2"} onChange={handleChange} />2
+                    <input type="radio" id="rating-3" value="3" name="rating" checked={rating === "3"} onChange={handleChange} />3
+                    <input type="radio" id="rating-4" value="4" name="rating" checked={rating === "4"} onChange={handleChange} />4
+                    <input type="radio" id="rating-5" value="5" name="rating" checked={rating === "5"} onChange={handleChange} />5
                 </div>
                 <br />
                 <label htmlFor="comment">Comment</label>
