@@ -14,7 +14,7 @@ const ShowView = props => {
                 history.push(`/shows/${props.show.id}/edit`);
             }
             if (event.target.textContent === 'Review') {
-                debugger;
+                history.push(`/shows/${props.show.id}/review`);
             }
         } else {
             history.push("/signup");

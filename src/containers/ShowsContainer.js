@@ -5,6 +5,7 @@ import ShowView from '../components/shows/ShowView';
 import ShowsList from '../components/ShowsList';
 import SavedShows from './SavedShowsContainer';
 import EditShowForm from '../components/shows/EditShowForm';
+import ReviewShowForm from '../components/shows/ReviewShowForm';
 import { saveShow, checkForSavedShows } from '../reducers/showsReducer';
 import AlertDismissible from '../components/AlertDismissible';
 import Error from '../components/Error';
@@ -43,6 +44,11 @@ function ShowsContainer(props) {
                     const routeId = parseInt(routeInfo.match.params.id);
                     const show = shows.find(s => s.id === routeId);
                     return show ? <EditShowForm show={show} /> : <Error />;
+                }} />
+                <Route path="/shows/:id/review" component={(routeInfo) => {
+                    const routeId = parseInt(routeInfo.match.params.id);
+                    const show = shows.find(s => s.id === routeId);
+                    return show ? <ReviewShowForm show={show} /> : <Error />;
                 }} />
             </Switch>
         </div>
