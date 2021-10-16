@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import Show from '../components/Show';
 import ShowView from '../components/shows/ShowView';
 import ShowsList from '../components/ShowsList';
 import SavedShows from './SavedShowsContainer';
@@ -38,7 +37,6 @@ function ShowsContainer(props) {
                 <Route exact path="/shows/:id" component={(routeInfo) => {
                     const routeId = parseInt(routeInfo.match.params.id);
                     const show = shows.find(s => s.id === routeId);
-                    // return show ? <Show show={show} handleClick={handleClick} isLoggedIn={props.isLoggedIn} /> : <Error />;
                     return show ? <ShowView show={show} handleClick={handleClick} isLoggedIn={props.isLoggedIn} /> : <Error />;
                 }} />
                 <Route path="/shows/:id/edit" component={(routeInfo) => {

@@ -1,25 +1,6 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
 const Show = props => {
-    const history = useHistory();
-
-    const handleClick = event => {
-        if (props.isLoggedIn) {
-            if (event.target.textContent === 'Add to Saved') {
-                props.handleClick(props.show);
-            } 
-            if (event.target.textContent === 'Edit') {
-                history.push(`/shows/${props.show.id}/edit`);
-            }
-            if (event.target.textContent === 'Review') {
-                debugger;
-            }
-        } else {
-            history.push("/signup");
-        }
-    }
-
     return (
         <div>
             <h3>{props.show.title}</h3>
@@ -32,9 +13,6 @@ const Show = props => {
                 <li>Open Date: {props.show.open_date}</li>
                 <li>Type: Musical</li> {/*toggle musical/theater */}
             </ul> 
-            <button className="gr-button" onClick={handleClick}>Add to Saved</button>
-            <button className="gr-button" onClick={handleClick}>Edit</button>
-            <button className="gr-button" onClick={handleClick}>Review</button>
         </div>
     )
 }
