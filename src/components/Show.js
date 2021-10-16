@@ -12,6 +12,9 @@ const Show = props => {
             if (event.target.textContent === 'Edit') {
                 history.push(`/shows/${props.show.id}/edit`);
             }
+            if (event.target.textContent === 'Review') {
+                debugger;
+            }
         } else {
             history.push("/signup");
         }
@@ -31,6 +34,7 @@ const Show = props => {
             </ul> 
             <button className="gr-button" onClick={handleClick}>Add to Saved</button>
             <button className="gr-button" onClick={handleClick}>Edit</button>
+            <button className="gr-button" onClick={handleClick}>Review</button>
         </div>
     )
 }
