@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { reviewShow } from '../../actions/showActions';
 
 const ReviewShowForm = props => {
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState(0);
+    const dispatch = useDispatch();
 
     const handleChange = event => {
         const name = event.target.name;
@@ -20,6 +23,9 @@ const ReviewShowForm = props => {
 
     const handleSubmit = event => {
         event.preventDefault();
+        const showAndReview = { show_id: props.show.id, comment, rating };
+        const reviewShowThunk = reviewShow(showAndReview);
+        dispatch(reviewShowThunk);
         debugger;
     }
 
