@@ -5,9 +5,11 @@ function Ratings(props) {
         <>
             <h3>Ratings</h3>
             {props.show.ratings ? props.show.ratings.map(rating => {
-                return(
-                    <p key={rating.id}>User {rating.user_id} gives {rating.rating}/5 stars</p>
-                )
+                if (rating.rating !== 0) {
+                    return(
+                        <p key={rating.id}>User {rating.user_id} gives {rating.rating}/5 stars</p>
+                    )
+                }
             }) : "No ratings"}
         </>
     )

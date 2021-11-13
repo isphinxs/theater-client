@@ -5,9 +5,11 @@ function Comments(props) {
         <div>
             <h3>Comments</h3>
             {props.show.comments ? props.show.comments.map(comment => {
-                return(
-                    <p key={comment.id}>User {comment.user_id} says "{comment.comment}"</p>
-                )
+                if (comment.comment !== "") {
+                    return(
+                        <p key={comment.id}>User {comment.user_id} says "{comment.comment}"</p>
+                    )
+                }
             }) : "No comments"}
         </div>
     )
