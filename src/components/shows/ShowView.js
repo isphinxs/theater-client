@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Show from '../Show';
+import Comments from '../reviews/Comments';
+import Ratings from '../reviews/Ratings';
 
 const ShowView = props => {
     const history = useHistory();
@@ -27,6 +29,10 @@ const ShowView = props => {
             <button className="gr-button" onClick={handleClick}>Add to Saved</button>
             <button className="gr-button" onClick={handleClick}>Edit</button>
             <button className="gr-button" onClick={handleClick}>Review</button>
+            <div className="reviews">
+                <Comments show={props.show} />
+                <Ratings show={props.show} />
+            </div>
         </React.Fragment>
     )
 }

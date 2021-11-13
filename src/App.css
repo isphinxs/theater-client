@@ -216,6 +216,11 @@ div.box-right {
   clear: both;
 }
 
+/* Reviews */
+.reviews {
+  padding: 25px;
+}
+
 
 /* Footer */
 
