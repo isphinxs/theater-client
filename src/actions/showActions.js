@@ -2,27 +2,40 @@ import { config } from '../Constants';
 
 const URL = config.url;
 
-export function reviewShow(show) {
-    return async function reviewShowThunk(dispatch) {
-        // try {
-        //     const resp = await fetch(`${URL}/shows/${show.id}`, {
-        //         method: 'PATCH',
-        //         headers: {
-        //             'content-type': 'application/json',
-        //             'accepts': 'application/json',
-        //             Authorization: `Bearer ${localStorage.getItem("token")}`
-        //         },
-        //         body: JSON.stringify(show)
-        //     });
-        //     const data = await resp.json();
+export function addComment(review) {
+    return async function addCommentThunk(dispatch, getState) {
+        const test = {
+            comment: {
+                user_id: getState().user.id,
+                show_id: review.show_id,
+                comment: review.comment
+            }
+        }
+        debugger;
+        try {
+            const resp = await fetch(`${URL}/comments`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'accepts': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({comment: {
+                    user_id: getState().user.id,
+                    show_id: review.show_id,
+                    comment: review.comment
+                }})
+            });
+            const data = await resp.json();
+            debugger;
 
-        //     // update Redux state
-        //     dispatch({type: 'shows/updateShow', payload: data});
-        //     return data;
+            // update Redux state
+            // dispatch({type: 'shows/updateShow', payload: data});
+            return data;
 
-        // } catch(error) {
-        //     dispatch({ type: 'shows/error', payload: error });
-        // }
+        } catch(error) {
+            dispatch({ type: 'shows/error', payload: error });
+        }
     }
 }
 

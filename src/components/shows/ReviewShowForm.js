@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { reviewShow } from '../../actions/showActions';
+import { addComment } from '../../actions/showActions';
 
 const ReviewShowForm = props => {
     const [comment, setComment] = useState("");
@@ -13,7 +13,7 @@ const ReviewShowForm = props => {
             setRating(parseInt(event.target.value));
         }
         if (name === "comment") {
-            setComment(event.target.comment);
+            setComment(event.target.value);
         }
     }
     
@@ -24,8 +24,8 @@ const ReviewShowForm = props => {
     const handleSubmit = event => {
         event.preventDefault();
         const showAndReview = { show_id: props.show.id, comment, rating };
-        const reviewShowThunk = reviewShow(showAndReview);
-        dispatch(reviewShowThunk);
+        const addCommentThunk = addComment(showAndReview);
+        dispatch(addCommentThunk);
         debugger;
     }
 
