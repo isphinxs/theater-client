@@ -4,14 +4,6 @@ const URL = config.url;
 
 export function addComment(review) {
     return async function addCommentThunk(dispatch, getState) {
-        const test = {
-            comment: {
-                user_id: getState().user.id,
-                show_id: review.show_id,
-                comment: review.comment
-            }
-        }
-        debugger;
         try {
             const resp = await fetch(`${URL}/comments`, {
                 method: 'POST',
@@ -30,7 +22,7 @@ export function addComment(review) {
             debugger;
 
             // update Redux state
-            // dispatch({type: 'shows/updateShow', payload: data});
+            dispatch({type: 'reviews/addComment', payload: data});
             return data;
 
         } catch(error) {

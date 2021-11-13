@@ -5,6 +5,8 @@ const URL = config.url;
 const initialState = {
     shows: [],
     savedShows: [],
+    comments: [],
+    reviews: [],
     isLoading: false,
     isLoggedIn: false,
     error: null,
@@ -13,6 +15,22 @@ const initialState = {
 
 function showsReducer(state = initialState, action) {
     switch(action.type) {
+        case 'reviews/addComment': {
+            return {
+                ...state,
+                comments: [...state.comments, action.payload],
+                isLoading: false,
+                error: null
+            }
+        }
+        case 'reviews/addRating': {
+            return {
+                ...state,
+                reviews: [...state.reviews, action.payload],
+                isLoading: false,
+                error: null
+            }
+        }
         case 'shows/saveShow': {
             return {
                 ...state,
