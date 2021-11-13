@@ -1,10 +1,14 @@
 import React from 'react';
 
-function Ratings() {
+function Ratings(props) {
     return(
         <>
             <h3>Ratings</h3>
-            <p>No ratings</p>
+            {props.show.ratings ? props.show.ratings.map(rating => {
+                return(
+                    <p key={rating.id}>User {rating.user_id} gives {rating.rating}/5 stars</p>
+                )
+            }) : "No ratings"}
         </>
     )
 }
