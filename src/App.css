@@ -217,10 +217,14 @@ div.box-right {
 }
 
 /* Reviews */
-.reviews {
-  padding: 25px;
+
+.comments {
+  padding-top: 25px;
 }
 
+.ratings {
+  padding-top: 25px;
+}
 
 /* Footer */
 
