@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { addComment } from '../../actions/showActions';
 import { addRating } from '../../actions/showActions';
 
@@ -7,6 +8,7 @@ const ReviewShowForm = props => {
     const [comment, setComment] = useState("");
     const [rating, setRating] = useState(0);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleChange = event => {
         const name = event.target.name;
@@ -33,6 +35,7 @@ const ReviewShowForm = props => {
             const addRatingThunk = addRating(showAndReview);
             dispatch(addRatingThunk);
         }
+        history.push(`/shows/${props.show.id}`);
     }
 
     return(
