@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import ShowView from '../components/shows/ShowView';
 import ShowsList from '../components/ShowsList';
 import SavedShows from './SavedShowsContainer';
@@ -46,9 +47,10 @@ function ShowsContainer(props) {
                     return show ? <EditShowForm show={show} /> : <Error />;
                 }} />
                 <Route path="/shows/:id/review" component={(routeInfo) => {
+                    { if (!props.isLoggedIn) <Redirect to="/login" /> }                        
                     const routeId = parseInt(routeInfo.match.params.id);
                     const show = shows.find(s => s.id === routeId);
-                    return show ? <ReviewShowForm show={show} /> : <Error />;
+                    return show ? <ReviewShowForm show={show} /> : <Error />
                 }} />
             </Switch>
         </div>
