@@ -6,7 +6,7 @@ const initialState = {
     shows: [],
     savedShows: [],
     comments: [],
-    reviews: [],
+    ratings: [],
     isLoading: false,
     isLoggedIn: false,
     error: null,
@@ -26,7 +26,7 @@ function showsReducer(state = initialState, action) {
         case 'reviews/addRating': {
             return {
                 ...state,
-                reviews: [...state.reviews, action.payload],
+                ratings: [...state.reviews, action.payload],
                 isLoading: false,
                 error: null
             }

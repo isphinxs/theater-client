@@ -19,10 +19,45 @@ export function addComment(review) {
                 }})
             });
             const data = await resp.json();
-            debugger;
 
             // update Redux state
             dispatch({type: 'reviews/addComment', payload: data});
+            return data;
+
+        } catch(error) {
+            dispatch({ type: 'shows/error', payload: error });
+        }
+    }
+}
+
+export function addRating(review) {
+    return async function addRatingThunk(dispatch, getState) {
+        const test = {
+            rating: {
+                user_id: getState().user.id,
+                show_id: review.show_id,
+                rating: review.rating
+            }
+        }
+
+        try {
+            const resp = await fetch(`${URL}/ratings`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'accepts': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({rating: {
+                    user_id: getState().user.id,
+                    show_id: review.show_id,
+                    rating: review.rating
+                }})
+            });
+            const data = await resp.json();
+
+            // update Redux state
+            dispatch({type: 'reviews/addRating', payload: data});
             return data;
 
         } catch(error) {
