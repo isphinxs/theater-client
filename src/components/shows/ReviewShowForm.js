@@ -28,12 +28,10 @@ const ReviewShowForm = props => {
         if (comment !== "") {
             const addCommentThunk = addComment(showAndReview);
             dispatch(addCommentThunk);
-            console.log("Comment sent!");
         }
         if (rating !== 0) {
             const addRatingThunk = addRating(showAndReview);
             dispatch(addRatingThunk);
-            console.log("Rating sent!");
         }
     }
 
