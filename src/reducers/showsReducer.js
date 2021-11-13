@@ -26,7 +26,7 @@ function showsReducer(state = initialState, action) {
         case 'reviews/addRating': {
             return {
                 ...state,
-                ratings: [...state.reviews, action.payload],
+                ratings: [...state.ratings, action.payload],
                 isLoading: false,
                 error: null
             }

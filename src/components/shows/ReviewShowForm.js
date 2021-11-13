@@ -25,10 +25,16 @@ const ReviewShowForm = props => {
     const handleSubmit = event => {
         event.preventDefault();
         const showAndReview = { show_id: props.show.id, comment, rating };
-        const addCommentThunk = addComment(showAndReview);
-        const addRatingThunk = addRating(showAndReview);
-        dispatch(addCommentThunk);
-        dispatch(addRatingThunk);
+        if (comment !== "") {
+            const addCommentThunk = addComment(showAndReview);
+            dispatch(addCommentThunk);
+            console.log("Comment sent!");
+        }
+        if (rating !== 0) {
+            const addRatingThunk = addRating(showAndReview);
+            dispatch(addRatingThunk);
+            console.log("Rating sent!");
+        }
     }
 
     return(
