@@ -5,8 +5,6 @@ const URL = config.url;
 const initialState = {
     shows: [],
     savedShows: [],
-    comments: [],
-    ratings: [],
     isLoading: false,
     isLoggedIn: false,
     error: null,
@@ -16,17 +14,25 @@ const initialState = {
 function showsReducer(state = initialState, action) {
     switch(action.type) {
         case 'reviews/addComment': {
+            const index = state.shows.findIndex(s => s.id === action.payload.show_id);
+            const newShows = [...state.shows];
+            newShows[index].comments.push(action.payload);
+            
             return {
                 ...state,
-                comments: [...state.comments, action.payload],
+                shows: newShows,
                 isLoading: false,
                 error: null
             }
         }
         case 'reviews/addRating': {
+            const index = state.shows.findIndex(s => s.id === action.payload.show_id);
+            const newShows = [...state.shows];
+            newShows[index].ratings.push(action.payload);
+
             return {
                 ...state,
-                ratings: [...state.ratings, action.payload],
+                shows: newShows,
                 isLoading: false,
                 error: null
             }
@@ -85,6 +91,8 @@ function showsReducer(state = initialState, action) {
             return {
                 ...state,
                 shows: newShows,
+                comments: action.payload.comments,
+                ratings: action.payload.ratings,
                 isLoading: false,
                 error: null
             }
